@@ -1,0 +1,28 @@
+[project]
+name = "crm-ai-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic",
+    "crewai",
+    "fastapi[standard]",
+    "httpx",
+    "langchain",
+    "langchain-community",
+    "langchain-openai",
+    "mysql-connector-python",
+    "openai",
+    "passlib",
+    "pydantic-settings",
+    "pytest",
+    "python-dotenv",
+    "python-jose",
+    "python-multipart",
+    "qdrant-client",
+    "requests",
+    "sqlalchemy",
+    "tenacity",
+    "uvicorn",
+]

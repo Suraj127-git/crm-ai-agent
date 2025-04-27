@@ -28,13 +28,14 @@ class UserResponse(UserBase):
 @router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     # Check if username exists
-    db_user = db.query(User).filter(User.username == user.username).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
+    # Check if username or email already exists in a single query
+    existing_user = db.query(User).filter(
+        (User.username == user.username) | (User.email == user.email)
+    ).first()
     
-    # Check if email exists
-    db_user = db.query(User).filter(User.email == user.email).first()
-    if db_user:
+    if existing_user:
+        if existing_user.username == user.username:
+            raise HTTPException(status_code=400, detail="Username already registered")
         raise HTTPException(status_code=400, detail="Email already registered")
     
     # Create new user

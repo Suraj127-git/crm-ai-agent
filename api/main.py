@@ -1,6 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
 import os
 from dotenv import load_dotenv
 
@@ -8,8 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import routers
-from api.endpoints import users, courses, conversations, auth
-from db.utils.database import get_db
+from api.endpoints import users, courses, conversations, aut
 from vector_db.qdrant_client import initialize_collection
 
 # Create FastAPI app
